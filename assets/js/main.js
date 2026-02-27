@@ -6,6 +6,14 @@
     var menu = document.getElementById('nav-menu');
 
     if (toggle && menu) {
+        var menuLinks = menu.querySelectorAll('.navbar__link');
+
+        function closeMenu() {
+            menu.classList.remove('navbar__nav--open');
+            toggle.classList.remove('navbar__toggle--active');
+            toggle.setAttribute('aria-expanded', 'false');
+        }
+
         toggle.addEventListener('click', function () {
             var isOpen = menu.classList.toggle('navbar__nav--open');
             toggle.classList.toggle('navbar__toggle--active');
@@ -13,14 +21,50 @@
         });
 
         // Close menu when clicking a nav link
-        var links = menu.querySelectorAll('.navbar__link');
-        for (var i = 0; i < links.length; i++) {
-            links[i].addEventListener('click', function () {
-                menu.classList.remove('navbar__nav--open');
-                toggle.classList.remove('navbar__toggle--active');
-                toggle.setAttribute('aria-expanded', 'false');
+        for (var i = 0; i < menuLinks.length; i++) {
+            menuLinks[i].addEventListener('click', function () {
+                closeMenu();
             });
         }
+
+        // Close menu on Escape key and return focus to toggle
+        document.addEventListener('keydown', function (e) {
+            if (e.key === 'Escape' && menu.classList.contains('navbar__nav--open')) {
+                closeMenu();
+                toggle.focus();
+            }
+        });
+
+        // Close menu when clicking outside
+        document.addEventListener('click', function (e) {
+            if (menu.classList.contains('navbar__nav--open') && !menu.contains(e.target) && !toggle.contains(e.target)) {
+                closeMenu();
+            }
+        });
+
+        // Focus trap when menu is open
+        document.addEventListener('keydown', function (e) {
+            if (e.key !== 'Tab' || !menu.classList.contains('navbar__nav--open')) return;
+
+            var focusableItems = [toggle];
+            for (var j = 0; j < menuLinks.length; j++) {
+                focusableItems.push(menuLinks[j]);
+            }
+            var firstItem = focusableItems[0];
+            var lastItem = focusableItems[focusableItems.length - 1];
+
+            if (e.shiftKey) {
+                if (document.activeElement === firstItem) {
+                    e.preventDefault();
+                    lastItem.focus();
+                }
+            } else {
+                if (document.activeElement === lastItem) {
+                    e.preventDefault();
+                    firstItem.focus();
+                }
+            }
+        });
     }
 
     // Navbar shadow on scroll
