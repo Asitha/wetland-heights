@@ -44,7 +44,7 @@
         a {
             display: inline-block;
             padding: 12px 24px;
-            background: #A87A48;
+            background: #8C6338;
             color: #fff;
             border-radius: 8px;
             text-decoration: none;
@@ -53,14 +53,18 @@
             transition: background 0.2s ease, transform 0.2s ease;
         }
         a:hover {
-            background: #8C6338;
+            background: #7A5530;
             transform: translateY(-1px);
+        }
+        a:focus-visible {
+            outline: 2px solid #8C6338;
+            outline-offset: 2px;
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>404</h1>
+        <h1 aria-hidden="true">404</h1>
         <h2>Page not found</h2>
         <p>The page you're looking for doesn't exist or has been moved.</p>
         <a href="/">Back to Home</a>

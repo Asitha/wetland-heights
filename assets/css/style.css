@@ -1,6 +1,7 @@
 /* ============================================
    Wetland Heights — Styles
    Mobile-first responsive design
+   Earthy palette — see docs/brand-guidelines.html
    ============================================ */
 
 :root {
@@ -8,12 +9,15 @@
     --color-surface: #FFFFFF;
     --color-text: #2C2520;
     --color-text-secondary: #6B5E56;
-    --color-accent: #A87A48;
-    --color-accent-hover: #8C6338;
+    --color-accent: #8C6338;
+    --color-accent-hover: #7A5530;
     --color-border: #E5E0DA;
     --color-whatsapp: #25D366;
     --color-star: #D4A843;
 
+    /* Extended palette — defined for brand reference;
+       not yet used in component styles.
+       Active tokens: --color-accent, --color-accent-hover */
     --color-primary-light: #D4A574;
     --color-primary: #C4935E;
     --color-primary-dark: #8C6338;
@@ -664,9 +668,9 @@ button:focus-visible,
 
 .form-group input:focus,
 .form-group textarea:focus {
-    outline: none;
+    outline: 2px solid transparent; /* visible in Windows High Contrast Mode */
     border-color: var(--color-accent);
-    box-shadow: 0 0 0 3px rgba(168, 122, 72, 0.35);
+    box-shadow: 0 0 0 3px rgba(140, 99, 56, 0.35); /* --color-accent at 35% */
 }
 
 .form-group textarea {
