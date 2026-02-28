@@ -15,9 +15,7 @@
     --color-whatsapp: #25D366;
     --color-star: #D4A843;
 
-    /* Extended palette — defined for brand reference;
-       not yet used in component styles.
-       Active tokens: --color-accent, --color-accent-hover */
+    /* Extended palette */
     --color-primary-light: #D4A574;
     --color-primary: #C4935E;
     --color-primary-dark: #8C6338;
@@ -493,6 +491,7 @@ button:focus-visible,
 
 .reviews {
     padding: 64px 0;
+    background: #E8F1F0;
 }
 
 .reviews__grid {
@@ -503,6 +502,7 @@ button:focus-visible,
 .review-card {
     background: var(--color-surface);
     border: 1px solid var(--color-border);
+    border-left: 3px solid var(--color-secondary-light);
     border-radius: var(--radius);
     padding: 24px;
 }
@@ -571,7 +571,7 @@ button:focus-visible,
     height: 160px;
     border-radius: 50%;
     object-fit: cover;
-    border: 3px solid var(--color-border);
+    border: 3px solid var(--color-secondary-light);
 }
 
 .about__title {
@@ -669,8 +669,8 @@ button:focus-visible,
 .form-group input:focus,
 .form-group textarea:focus {
     outline: 2px solid transparent; /* visible in Windows High Contrast Mode */
-    border-color: var(--color-accent);
-    box-shadow: 0 0 0 3px rgba(140, 99, 56, 0.35); /* --color-accent at 35% */
+    border-color: var(--color-secondary);
+    box-shadow: 0 0 0 3px rgba(142, 180, 177, 0.35); /* --color-secondary at 35% */
 }
 
 .form-group textarea {
@@ -682,7 +682,7 @@ button:focus-visible,
 
 .footer {
     padding: 32px 0;
-    border-top: 1px solid var(--color-border);
+    border-top: 1px solid var(--color-secondary-light);
 }
 
 .footer__inner {
