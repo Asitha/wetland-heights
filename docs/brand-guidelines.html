@@ -1,0 +1,1101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Brand Guidelines — Wetland Heights</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,100;0,9..144,300;0,9..144,400;0,9..144,600;1,9..144,100;1,9..144,300;1,9..144,400&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    /* ── Reset & Base ──────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html {
+      font-size: 16px;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    body {
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+      font-weight: 400;
+      line-height: 1.6;
+      color: #2C2520;
+      background-color: #F8F5F1;
+    }
+
+    /* ── Layout ────────────────────────────────────────── */
+    .page-wrapper {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 3rem 2rem 4rem;
+    }
+
+    section {
+      margin-bottom: 4rem;
+    }
+
+    /* ── Typography ────────────────────────────────────── */
+    h1, h2, h3 {
+      font-family: 'Fraunces', Georgia, serif;
+    }
+
+    h2 {
+      font-weight: 300;
+      font-size: 2.25rem;
+      margin-bottom: 1.5rem;
+      color: #2C2520;
+      padding-bottom: 0.5rem;
+      border-bottom: 2px solid #E5E0DA;
+    }
+
+    h3 {
+      font-weight: 400;
+      font-size: 1.25rem;
+      margin-bottom: 1rem;
+      color: #3A3028;
+    }
+
+    p {
+      margin-bottom: 1rem;
+      color: #4A4040;
+      max-width: 72ch;
+    }
+
+    /* ── Header ────────────────────────────────────────── */
+    .page-header {
+      text-align: center;
+      padding: 3rem 0 2rem;
+      margin-bottom: 3rem;
+      border-bottom: 3px solid #A87A48;
+    }
+
+    .page-header h1 {
+      font-weight: 100;
+      font-style: italic;
+      font-size: 3rem;
+      line-height: 1.2;
+      color: #2C2520;
+      margin-bottom: 0.75rem;
+    }
+
+    .page-header .version {
+      font-family: 'Inter', sans-serif;
+      font-weight: 600;
+      font-size: 0.75rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: #8A7F77;
+    }
+
+    .page-header .subtitle {
+      font-family: 'Inter', sans-serif;
+      font-weight: 400;
+      font-size: 0.938rem;
+      color: #6B5E56;
+      margin-top: 0.5rem;
+    }
+
+    /* ── Brand Story ──────────────────────────────────── */
+    .brand-story p {
+      font-size: 1.125rem;
+      line-height: 1.75;
+      color: #4A4040;
+      max-width: 68ch;
+    }
+
+    /* ── Color Palette ────────────────────────────────── */
+    .palette-group {
+      margin-bottom: 2.5rem;
+    }
+
+    .palette-group h3 {
+      font-family: 'Inter', sans-serif;
+      font-weight: 600;
+      font-size: 0.75rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: #8A7F77;
+      margin-bottom: 1rem;
+    }
+
+    .swatch-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+      gap: 1rem;
+    }
+
+    .swatch {
+      border-radius: 10px;
+      overflow: hidden;
+      background: #FFFFFF;
+      box-shadow: 0 1px 4px rgba(44, 37, 32, 0.08);
+      transition: transform 0.15s ease, box-shadow 0.15s ease;
+    }
+
+    .swatch:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(44, 37, 32, 0.12);
+    }
+
+    .swatch-color {
+      height: 80px;
+      display: flex;
+      align-items: flex-end;
+      justify-content: flex-end;
+      padding: 6px 8px;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.688rem;
+      font-weight: 600;
+      letter-spacing: 0.03em;
+    }
+
+    .swatch-label {
+      padding: 8px 10px;
+      background: #FFFFFF;
+    }
+
+    .swatch-label .name {
+      font-family: 'Inter', sans-serif;
+      font-weight: 600;
+      font-size: 0.813rem;
+      color: #2C2520;
+      display: block;
+      line-height: 1.3;
+    }
+
+    .swatch-label .hex {
+      font-family: 'Inter', sans-serif;
+      font-weight: 400;
+      font-size: 0.75rem;
+      color: #8A7F77;
+    }
+
+    /* Semantic color swatches */
+    .semantic-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 1rem;
+    }
+
+    .semantic-swatch {
+      border-radius: 10px;
+      overflow: hidden;
+      background: #FFFFFF;
+      box-shadow: 0 1px 4px rgba(44, 37, 32, 0.08);
+    }
+
+    .semantic-colors {
+      display: flex;
+      height: 64px;
+    }
+
+    .semantic-colors .fg {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.688rem;
+      font-weight: 600;
+    }
+
+    .semantic-colors .bg {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.688rem;
+      font-weight: 600;
+    }
+
+    .semantic-swatch .swatch-label {
+      padding: 8px 10px;
+    }
+
+    /* ── Color Usage Rules ─────────────────────────────── */
+    .ratio-bar {
+      display: flex;
+      height: 48px;
+      border-radius: 10px;
+      overflow: hidden;
+      margin-bottom: 0.75rem;
+      box-shadow: 0 1px 4px rgba(44, 37, 32, 0.08);
+    }
+
+    .ratio-bar .segment {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Inter', sans-serif;
+      font-weight: 600;
+      font-size: 0.813rem;
+    }
+
+    .ratio-labels {
+      display: flex;
+      gap: 2rem;
+      margin-bottom: 2.5rem;
+      flex-wrap: wrap;
+    }
+
+    .ratio-labels span {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.813rem;
+      color: #6B5E56;
+    }
+
+    .ratio-labels span::before {
+      content: '';
+      display: inline-block;
+      width: 12px;
+      height: 12px;
+      border-radius: 3px;
+      margin-right: 6px;
+      vertical-align: -1px;
+    }
+
+    .ratio-labels .neutrals::before { background: #F0EBE5; }
+    .ratio-labels .teal::before { background: #7DA3A0; }
+    .ratio-labels .cinnamon::before { background: #A87A48; }
+
+    /* Accessibility table */
+    .contrast-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.875rem;
+      margin-top: 1rem;
+    }
+
+    .contrast-table thead {
+      background: #FFFFFF;
+    }
+
+    .contrast-table th {
+      padding: 0.75rem 1rem;
+      text-align: left;
+      font-weight: 600;
+      font-size: 0.75rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #8A7F77;
+      border-bottom: 2px solid #E5E0DA;
+    }
+
+    .contrast-table td {
+      padding: 0.75rem 1rem;
+      border-bottom: 1px solid #F0EBE5;
+      color: #4A4040;
+    }
+
+    .contrast-table tbody tr:hover {
+      background: #FFFFFF;
+    }
+
+    .contrast-preview {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 56px;
+      height: 28px;
+      border-radius: 4px;
+      font-weight: 600;
+      font-size: 0.688rem;
+      letter-spacing: 0.03em;
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 2px 8px;
+      border-radius: 4px;
+      font-weight: 600;
+      font-size: 0.688rem;
+      letter-spacing: 0.03em;
+    }
+
+    .badge.pass {
+      background: #E8F0E8;
+      color: #5A8A5E;
+    }
+
+    .badge.fail {
+      background: #F8E8E4;
+      color: #B85C4A;
+    }
+
+    .badge.conditional {
+      background: #FBF0DC;
+      color: #C4943E;
+    }
+
+    /* ── Typography Specimens ──────────────────────────── */
+    .type-specimens {
+      margin-bottom: 2rem;
+    }
+
+    .specimen {
+      padding: 1.5rem;
+      background: #FFFFFF;
+      border-radius: 10px;
+      margin-bottom: 1rem;
+      box-shadow: 0 1px 4px rgba(44, 37, 32, 0.08);
+      display: flex;
+      align-items: baseline;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+    }
+
+    .specimen-sample {
+      flex: 1;
+      min-width: 200px;
+    }
+
+    .specimen-meta {
+      flex: 0 0 auto;
+      text-align: right;
+      min-width: 160px;
+    }
+
+    .specimen-meta .font-name {
+      font-family: 'Inter', sans-serif;
+      font-weight: 600;
+      font-size: 0.688rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #A87A48;
+      display: block;
+      margin-bottom: 2px;
+    }
+
+    .specimen-meta .font-detail {
+      font-family: 'Inter', sans-serif;
+      font-weight: 400;
+      font-size: 0.75rem;
+      color: #8A7F77;
+      display: block;
+    }
+
+    .pairing-example {
+      padding: 2rem;
+      background: #FFFFFF;
+      border-radius: 10px;
+      box-shadow: 0 1px 4px rgba(44, 37, 32, 0.08);
+      border-left: 4px solid #A87A48;
+    }
+
+    .pairing-example h4 {
+      font-family: 'Fraunces', Georgia, serif;
+      font-weight: 300;
+      font-size: 1.75rem;
+      color: #2C2520;
+      margin-bottom: 0.75rem;
+    }
+
+    .pairing-example p {
+      font-family: 'Inter', sans-serif;
+      font-weight: 400;
+      font-size: 1rem;
+      line-height: 1.7;
+      color: #4A4040;
+      margin-bottom: 0;
+    }
+
+    /* ── Component Mapping ─────────────────────────────── */
+    .component-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.875rem;
+    }
+
+    .component-table thead {
+      background: #FFFFFF;
+    }
+
+    .component-table th {
+      padding: 0.75rem 1rem;
+      text-align: left;
+      font-weight: 600;
+      font-size: 0.75rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #8A7F77;
+      border-bottom: 2px solid #E5E0DA;
+    }
+
+    .component-table td {
+      padding: 0.75rem 1rem;
+      border-bottom: 1px solid #F0EBE5;
+      color: #4A4040;
+      vertical-align: top;
+    }
+
+    .component-table tbody tr:hover {
+      background: #FFFFFF;
+    }
+
+    .component-table .component-name {
+      font-weight: 600;
+      color: #2C2520;
+    }
+
+    .color-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.813rem;
+    }
+
+    .color-chip::before {
+      content: '';
+      display: inline-block;
+      width: 14px;
+      height: 14px;
+      border-radius: 3px;
+      flex-shrink: 0;
+      background: var(--chip);
+    }
+
+    /* ── Print & Digital ───────────────────────────────── */
+    .ref-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .ref-card {
+      background: #FFFFFF;
+      border-radius: 10px;
+      padding: 1.5rem;
+      box-shadow: 0 1px 4px rgba(44, 37, 32, 0.08);
+    }
+
+    .ref-card h3 {
+      font-family: 'Inter', sans-serif;
+      font-weight: 600;
+      font-size: 0.75rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: #A87A48;
+      margin-bottom: 1rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 1px solid #F0EBE5;
+    }
+
+    .cmyk-row {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      margin-bottom: 0.75rem;
+    }
+
+    .cmyk-swatch {
+      width: 32px;
+      height: 32px;
+      border-radius: 6px;
+      flex-shrink: 0;
+    }
+
+    .cmyk-detail {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.813rem;
+    }
+
+    .cmyk-detail .cmyk-name {
+      font-weight: 600;
+      color: #2C2520;
+      display: block;
+    }
+
+    .cmyk-detail .cmyk-values {
+      color: #8A7F77;
+      font-size: 0.75rem;
+    }
+
+    .ref-card ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .ref-card li {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.875rem;
+      color: #4A4040;
+      padding: 0.375rem 0;
+      padding-left: 1.25rem;
+      position: relative;
+      line-height: 1.5;
+    }
+
+    .ref-card li::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0.65rem;
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: #B5D1CF;
+    }
+
+    /* ── Footer ────────────────────────────────────────── */
+    .page-footer {
+      text-align: center;
+      padding: 2rem 0 0;
+      border-top: 1px solid #E5E0DA;
+      margin-top: 4rem;
+    }
+
+    .page-footer p {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.75rem;
+      color: #8A7F77;
+      max-width: none;
+      margin-bottom: 0.25rem;
+    }
+
+    /* ── Responsive ────────────────────────────────────── */
+    @media (max-width: 640px) {
+      .page-header h1 { font-size: 2rem; }
+      h2 { font-size: 1.75rem; }
+      .swatch-grid { grid-template-columns: repeat(auto-fill, minmax(100px, 1fr)); }
+      .specimen { flex-direction: column; gap: 0.5rem; }
+      .specimen-meta { text-align: left; }
+      .component-table { font-size: 0.75rem; }
+      .component-table th, .component-table td { padding: 0.5rem; }
+      .ratio-labels { gap: 1rem; }
+    }
+
+    @media print {
+      body { background: #FFFFFF; }
+      .page-wrapper { max-width: none; padding: 1rem; }
+      .swatch, .ref-card, .specimen, .pairing-example { box-shadow: none; border: 1px solid #E5E0DA; }
+      section { page-break-inside: avoid; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="page-wrapper">
+
+  <!-- ════════════════════════════════════════════════════
+       1. HEADER
+       ════════════════════════════════════════════════════ -->
+  <header class="page-header">
+    <h1>Wetland Heights Brand Guidelines</h1>
+    <span class="version">February 2026</span>
+    <p class="subtitle">Internal reference for design, development, and marketing</p>
+  </header>
+
+  <!-- ════════════════════════════════════════════════════
+       2. BRAND STORY
+       ════════════════════════════════════════════════════ -->
+  <section class="brand-story">
+    <h2>Brand Story</h2>
+    <p>The Wetland Heights visual identity draws from the natural landscape of Sri Lanka &mdash; the warm tones of Ceylon cinnamon, the cool teals of urban wetland water, and the earthy neutrals of tropical soil and timber. Our palette connects guests to place before they arrive.</p>
+  </section>
+
+  <!-- ════════════════════════════════════════════════════
+       3. COLOR PALETTE
+       ════════════════════════════════════════════════════ -->
+  <section>
+    <h2>Color Palette</h2>
+
+    <!-- Primary (Cinnamon) -->
+    <div class="palette-group">
+      <h3>Primary &mdash; Cinnamon</h3>
+      <div class="swatch-grid">
+        <div class="swatch">
+          <div class="swatch-color" style="background:#F5EADC; color:#6B5E56;">#F5EADC</div>
+          <div class="swatch-label"><span class="name">Cinnamon Wash</span><span class="hex">#F5EADC</span></div>
+        </div>
+        <div class="swatch">
+          <div class="swatch-color" style="background:#E2C4A0; color:#4A4040;">#E2C4A0</div>
+          <div class="swatch-label"><span class="name">Cinnamon Pale</span><span class="hex">#E2C4A0</span></div>
+        </div>
+        <div class="swatch">
+          <div class="swatch-color" style="background:#D4A574; color:#3A3028;">#D4A574</div>
+          <div class="swatch-label"><span class="name">Cinnamon Light</span><span class="hex">#D4A574</span></div>
+        </div>
+        <div class="swatch">
+          <div class="swatch-color" style="background:#C4935E; color:#FFFFFF;">#C4935E</div>
+          <div class="swatch-label"><span class="name">Cinnamon</span><span class="hex">#C4935E</span></div>
+        </div>
+        <div class="swatch">
+          <div class="swatch-color" style="background:#A87A48; color:#FFFFFF;">#A87A48</div>
+          <div class="swatch-label"><span class="name">Cinnamon Dark</span><span class="hex">#A87A48</span></div>
+        </div>
+        <div class="swatch">
+          <div class="swatch-color" style="background:#8C6338; color:#FFFFFF;">#8C6338</div>
+          <div class="swatch-label"><span class="name">Cinnamon Deep</span><span class="hex">#8C6338</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Secondary (Wetland Teal) -->
+    <div class="palette-group">
+      <h3>Secondary &mdash; Wetland Teal</h3>
+      <div class="swatch-grid">
+        <div class="swatch">
+          <div class="swatch-color" style="background:#E8F1F0; color:#4D7370;">#E8F1F0</div>
+          <div class="swatch-label"><span class="name">Wetland Wash</span><span class="hex">#E8F1F0</span></div>
+        </div>
+        <div class="swatch">
+          <div class="swatch-color" style="background:#B5D1CF; color:#3A3028;">#B5D1CF</div>
+          <div class="swatch-label"><span class="name">Wetland Light</span><span class="hex">#B5D1CF</span></div>
+        </div>
+        <div class="swatch">
+          <div class="swatch-color" style="background:#8EB4B1; color:#2C2520;">#8EB4B1</div>
+          <div class="swatch-label"><span class="name">Wetland Sage</span><span class="hex">#8EB4B1</span></div>
+        </div>
+        <div class="swatch">
+          <div class="swatch-color" style="background:#7DA3A0; color:#FFFFFF;">#7DA3A0</div>
+          <div class="swatch-label"><span class="name">Wetland Teal</span><span class="hex">#7DA3A0</span></div>
+        </div>
+        <div class="swatch">
+          <div class="swatch-color" style="background:#628B88; color:#FFFFFF;">#628B88</div>
+          <div class="swatch-label"><span class="name">Wetland Deep</span><span class="hex">#628B88</span></div>
+        </div>
+        <div class="swatch">
+          <div class="swatch-color" style="background:#4D7370; color:#FFFFFF;">#4D7370</div>
+          <div class="swatch-label"><span class="name">Wetland Dark</span><span class="hex">#4D7370</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Neutrals -->
+    <div class="palette-group">
+      <h3>Neutrals</h3>
+      <div class="swatch-grid">
+        <div class="swatch">
+          <div class="swatch-color" style="background:#FFFFFF; color:#8A7F77; border-bottom: 1px solid #F0EBE5;">#FFFFFF</div>
+          <div class="swatch-label"><span class="name">White</span><span class="hex">#FFFFFF</span></div>
+        </div>
+        <div class="swatch">
+          <div class="swatch-color" style="background:#F8F5F1; color:#8A7F77;">#F8F5F1</div>
+          <div class="swatch-label"><span class="name">Cream</span><span class="hex">#F8F5F1</span></div>
+        </div>
+        <div class="swatch">
+          <div class="swatch-color" style="background:#F0EBE5; color:#6B5E56;">#F0EBE5</div>
+          <div class="swatch-label"><span class="name">Linen</span><span class="hex">#F0EBE5</span></div>
+        </div>
+        <div class="swatch">
+          <div class="swatch-color" style="background:#E5E0DA; color:#4A4040;">#E5E0DA</div>
+          <div class="swatch-label"><span class="name">Shell</span><span class="hex">#E5E0DA</span></div>
+        </div>
+        <div class="swatch">
+          <div class="swatch-color" style="background:#D1CBC5; color:#3A3028;">#D1CBC5</div>
+          <div class="swatch-label"><span class="name">Pebble</span><span class="hex">#D1CBC5</span></div>
+        </div>
+        <div class="swatch">
+          <div class="swatch-color" style="background:#B0A69E; color:#2C2520;">#B0A69E</div>
+          <div class="swatch-label"><span class="name">Sand</span><span class="hex">#B0A69E</span></div>
+        </div>
+        <div class="swatch">
+          <div class="swatch-color" style="background:#8A7F77; color:#FFFFFF;">#8A7F77</div>
+          <div class="swatch-label"><span class="name">Stone</span><span class="hex">#8A7F77</span></div>
+        </div>
+        <div class="swatch">
+          <div class="swatch-color" style="background:#6B5E56; color:#FFFFFF;">#6B5E56</div>
+          <div class="swatch-label"><span class="name">Driftwood</span><span class="hex">#6B5E56</span></div>
+        </div>
+        <div class="swatch">
+          <div class="swatch-color" style="background:#4A4040; color:#FFFFFF;">#4A4040</div>
+          <div class="swatch-label"><span class="name">Timber</span><span class="hex">#4A4040</span></div>
+        </div>
+        <div class="swatch">
+          <div class="swatch-color" style="background:#3A3028; color:#FFFFFF;">#3A3028</div>
+          <div class="swatch-label"><span class="name">Bark</span><span class="hex">#3A3028</span></div>
+        </div>
+        <div class="swatch">
+          <div class="swatch-color" style="background:#2C2520; color:#FFFFFF;">#2C2520</div>
+          <div class="swatch-label"><span class="name">Soil</span><span class="hex">#2C2520</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Accents -->
+    <div class="palette-group">
+      <h3>Accents</h3>
+      <div class="swatch-grid">
+        <div class="swatch">
+          <div class="swatch-color" style="background:#D4A843; color:#FFFFFF;">#D4A843</div>
+          <div class="swatch-label"><span class="name">Ceylon Gold</span><span class="hex">#D4A843</span></div>
+        </div>
+        <div class="swatch">
+          <div class="swatch-color" style="background:#5A7A5E; color:#FFFFFF;">#5A7A5E</div>
+          <div class="swatch-label"><span class="name">Botanical</span><span class="hex">#5A7A5E</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Semantic -->
+    <div class="palette-group">
+      <h3>Semantic</h3>
+      <div class="semantic-grid">
+        <div class="semantic-swatch">
+          <div class="semantic-colors">
+            <div class="fg" style="background:#5A8A5E; color:#FFFFFF;">Fg #5A8A5E</div>
+            <div class="bg" style="background:#E8F0E8; color:#5A8A5E;">Bg #E8F0E8</div>
+          </div>
+          <div class="swatch-label"><span class="name">Fern &mdash; Success</span></div>
+        </div>
+        <div class="semantic-swatch">
+          <div class="semantic-colors">
+            <div class="fg" style="background:#C4943E; color:#FFFFFF;">Fg #C4943E</div>
+            <div class="bg" style="background:#FBF0DC; color:#C4943E;">Bg #FBF0DC</div>
+          </div>
+          <div class="swatch-label"><span class="name">Turmeric &mdash; Warning</span></div>
+        </div>
+        <div class="semantic-swatch">
+          <div class="semantic-colors">
+            <div class="fg" style="background:#B85C4A; color:#FFFFFF;">Fg #B85C4A</div>
+            <div class="bg" style="background:#F8E8E4; color:#B85C4A;">Bg #F8E8E4</div>
+          </div>
+          <div class="swatch-label"><span class="name">Paprika &mdash; Error</span></div>
+        </div>
+        <div class="semantic-swatch">
+          <div class="semantic-colors">
+            <div class="fg" style="background:#5A8A9A; color:#FFFFFF;">Fg #5A8A9A</div>
+            <div class="bg" style="background:#E4EFF3; color:#5A8A9A;">Bg #E4EFF3</div>
+          </div>
+          <div class="swatch-label"><span class="name">Monsoon &mdash; Info</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════════════════════
+       4. COLOR USAGE RULES
+       ════════════════════════════════════════════════════ -->
+  <section>
+    <h2>Color Usage Rules</h2>
+
+    <h3>60 / 30 / 10 Distribution</h3>
+    <div class="ratio-bar">
+      <div class="segment" style="flex:6; background:#F0EBE5; color:#4A4040;">60%</div>
+      <div class="segment" style="flex:3; background:#7DA3A0; color:#FFFFFF;">30%</div>
+      <div class="segment" style="flex:1; background:#A87A48; color:#FFFFFF;">10%</div>
+    </div>
+    <div class="ratio-labels">
+      <span class="neutrals">60% Neutrals &mdash; backgrounds, cards, space</span>
+      <span class="teal">30% Wetland Teal &mdash; sections, badges, icons</span>
+      <span class="cinnamon">10% Cinnamon &mdash; CTAs, accents, highlights</span>
+    </div>
+
+    <h3>Accessibility Contrast</h3>
+    <p>Key color pairings tested against WCAG 2.1 contrast requirements. Normal text requires 4.5:1 (AA) or 7:1 (AAA). Large text (&ge;18px or &ge;14px bold) requires 3:1.</p>
+    <table class="contrast-table">
+      <thead>
+        <tr>
+          <th>Pairing</th>
+          <th>Preview</th>
+          <th>Ratio</th>
+          <th>AA Normal</th>
+          <th>AAA Normal</th>
+          <th>Note</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Soil on Cream</td>
+          <td><span class="contrast-preview" style="background:#F8F5F1; color:#2C2520;">Abc</span></td>
+          <td><strong>~14.5:1</strong></td>
+          <td><span class="badge pass">Pass</span></td>
+          <td><span class="badge pass">Pass</span></td>
+          <td>Primary text</td>
+        </tr>
+        <tr>
+          <td>Timber on Cream</td>
+          <td><span class="contrast-preview" style="background:#F8F5F1; color:#4A4040;">Abc</span></td>
+          <td><strong>~8.2:1</strong></td>
+          <td><span class="badge pass">Pass</span></td>
+          <td><span class="badge pass">Pass</span></td>
+          <td>Navbar text</td>
+        </tr>
+        <tr>
+          <td>Driftwood on Cream</td>
+          <td><span class="contrast-preview" style="background:#F8F5F1; color:#6B5E56;">Abc</span></td>
+          <td><strong>~5.1:1</strong></td>
+          <td><span class="badge pass">Pass</span></td>
+          <td><span class="badge fail">Fail</span></td>
+          <td>Secondary text</td>
+        </tr>
+        <tr>
+          <td>Cinnamon Dark on Cream</td>
+          <td><span class="contrast-preview" style="background:#F8F5F1; color:#A87A48;">Abc</span></td>
+          <td><strong>~3.1:1</strong></td>
+          <td><span class="badge fail">Fail</span></td>
+          <td><span class="badge fail">Fail</span></td>
+          <td><span class="badge conditional">Large text only</span></td>
+        </tr>
+        <tr>
+          <td>White on Cinnamon Deep</td>
+          <td><span class="contrast-preview" style="background:#8C6338; color:#FFFFFF;">Abc</span></td>
+          <td><strong>~5.3:1</strong></td>
+          <td><span class="badge pass">Pass</span></td>
+          <td><span class="badge fail">Fail</span></td>
+          <td>Button alternative</td>
+        </tr>
+        <tr>
+          <td>White on Wetland Dark</td>
+          <td><span class="contrast-preview" style="background:#4D7370; color:#FFFFFF;">Abc</span></td>
+          <td><strong>~5.1:1</strong></td>
+          <td><span class="badge pass">Pass</span></td>
+          <td><span class="badge fail">Fail</span></td>
+          <td>Teal button text</td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- ════════════════════════════════════════════════════
+       5. TYPOGRAPHY
+       ════════════════════════════════════════════════════ -->
+  <section>
+    <h2>Typography</h2>
+
+    <h3>Fraunces Specimens</h3>
+    <div class="type-specimens">
+      <div class="specimen">
+        <div class="specimen-sample" style="font-family:'Fraunces',Georgia,serif; font-weight:100; font-style:italic; font-size:4rem; line-height:1.15; color:#2C2520;">
+          Wetland Heights
+        </div>
+        <div class="specimen-meta">
+          <span class="font-name">Fraunces</span>
+          <span class="font-detail">100 Italic &middot; 4rem</span>
+          <span class="font-detail">Hero heading</span>
+        </div>
+      </div>
+
+      <div class="specimen">
+        <div class="specimen-sample" style="font-family:'Fraunces',Georgia,serif; font-weight:300; font-size:2.25rem; line-height:1.25; color:#2C2520;">
+          Section Heading
+        </div>
+        <div class="specimen-meta">
+          <span class="font-name">Fraunces</span>
+          <span class="font-detail">300 &middot; 2.25rem</span>
+          <span class="font-detail">Section heading</span>
+        </div>
+      </div>
+
+      <div class="specimen">
+        <div class="specimen-sample" style="font-family:'Fraunces',Georgia,serif; font-weight:400; font-size:1.125rem; line-height:1.4; color:#4A4040;">
+          Navigation Item
+        </div>
+        <div class="specimen-meta">
+          <span class="font-name">Fraunces</span>
+          <span class="font-detail">400 &middot; 1.125rem</span>
+          <span class="font-detail">Navbar links</span>
+        </div>
+      </div>
+    </div>
+
+    <h3>Inter Specimens</h3>
+    <div class="type-specimens">
+      <div class="specimen">
+        <div class="specimen-sample" style="font-family:'Inter',sans-serif; font-weight:600; font-size:1.25rem; line-height:1.3; color:#2C2520;">
+          Card Title Text
+        </div>
+        <div class="specimen-meta">
+          <span class="font-name">Inter</span>
+          <span class="font-detail">600 &middot; 1.25rem</span>
+          <span class="font-detail">Card title</span>
+        </div>
+      </div>
+
+      <div class="specimen">
+        <div class="specimen-sample" style="font-family:'Inter',sans-serif; font-weight:400; font-size:1rem; line-height:1.6; color:#4A4040;">
+          Body text for descriptions, paragraphs, and general reading content across the site.
+        </div>
+        <div class="specimen-meta">
+          <span class="font-name">Inter</span>
+          <span class="font-detail">400 &middot; 1rem</span>
+          <span class="font-detail">Body text</span>
+        </div>
+      </div>
+
+      <div class="specimen">
+        <div class="specimen-sample" style="font-family:'Inter',sans-serif; font-weight:400; font-size:0.875rem; line-height:1.5; color:#6B5E56;">
+          Smaller supporting text for captions, metadata, and secondary information.
+        </div>
+        <div class="specimen-meta">
+          <span class="font-name">Inter</span>
+          <span class="font-detail">400 &middot; 0.875rem</span>
+          <span class="font-detail">Small text</span>
+        </div>
+      </div>
+
+      <div class="specimen">
+        <div class="specimen-sample" style="font-family:'Inter',sans-serif; font-weight:600; font-size:0.938rem; line-height:1; color:#FFFFFF; display:inline-block; background:#A87A48; padding:0.75rem 1.5rem; border-radius:8px;">
+          Book Your Stay
+        </div>
+        <div class="specimen-meta">
+          <span class="font-name">Inter</span>
+          <span class="font-detail">600 &middot; 0.938rem</span>
+          <span class="font-detail">Button label</span>
+        </div>
+      </div>
+
+      <div class="specimen">
+        <div class="specimen-sample" style="font-family:'Inter',sans-serif; font-weight:600; font-size:0.75rem; letter-spacing:0.15em; text-transform:uppercase; color:#8A7F77;">
+          Featured Property
+        </div>
+        <div class="specimen-meta">
+          <span class="font-name">Inter</span>
+          <span class="font-detail">600 Uppercase &middot; 0.75rem</span>
+          <span class="font-detail">Overline</span>
+        </div>
+      </div>
+    </div>
+
+    <h3>Live Pairing Example</h3>
+    <div class="pairing-example">
+      <h4>Your home in the heart of Nugegoda</h4>
+      <p>Wetland Heights is a modern, fully-furnished apartment overlooking the Diyawanna Oya wetlands in Nugegoda, Sri Lanka. Designed with natural materials and warm tones, every detail connects you to the lush landscape just beyond the window. Whether you're visiting for a weekend or settling in for a longer stay, this is a space that feels like home.</p>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════════════════════
+       6. COMPONENT MAPPING
+       ════════════════════════════════════════════════════ -->
+  <section>
+    <h2>Component Mapping</h2>
+    <div style="overflow-x: auto;">
+      <table class="component-table">
+        <thead>
+          <tr>
+            <th>Component</th>
+            <th>Background</th>
+            <th>Text</th>
+            <th>Accent / Border</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="component-name">Page</td>
+            <td><span class="color-chip" style="--chip:#F8F5F1;">Cream <code>#F8F5F1</code></span></td>
+            <td>&mdash;</td>
+            <td>&mdash;</td>
+          </tr>
+          <tr>
+            <td class="component-name">Navbar</td>
+            <td><span class="color-chip" style="--chip:#FFFFFF;">White</span></td>
+            <td><span class="color-chip" style="--chip:#4A4040;">Timber <code>#4A4040</code></span></td>
+            <td><span class="color-chip" style="--chip:#E5E0DA;">Shell <code>#E5E0DA</code></span></td>
+          </tr>
+          <tr>
+            <td class="component-name">Hero</td>
+            <td>Wetland Wash &rarr; Cream gradient</td>
+            <td><span class="color-chip" style="--chip:#2C2520;">Soil <code>#2C2520</code></span></td>
+            <td><span class="color-chip" style="--chip:#A87A48;">Cinnamon Dark <code>#A87A48</code> button</span></td>
+          </tr>
+          <tr>
+            <td class="component-name">Feature Cards</td>
+            <td><span class="color-chip" style="--chip:#FFFFFF;">White</span></td>
+            <td>Soil heading, Driftwood body</td>
+            <td><span class="color-chip" style="--chip:#A87A48;">Cinnamon Dark <code>#A87A48</code> icons</span></td>
+          </tr>
+          <tr>
+            <td class="component-name">Property Cards</td>
+            <td><span class="color-chip" style="--chip:#F8F5F1;">Cream <code>#F8F5F1</code></span></td>
+            <td>Soil name, Driftwood details</td>
+            <td><span class="color-chip" style="--chip:#D4A843;">Ceylon Gold <code>#D4A843</code> stars</span></td>
+          </tr>
+          <tr>
+            <td class="component-name">Buttons (CTA)</td>
+            <td><span class="color-chip" style="--chip:#A87A48;">Cinnamon Dark <code>#A87A48</code></span></td>
+            <td><span class="color-chip" style="--chip:#FFFFFF;">White</span></td>
+            <td>&mdash;</td>
+          </tr>
+          <tr>
+            <td class="component-name">Review Cards</td>
+            <td><span class="color-chip" style="--chip:#FFFFFF;">White</span></td>
+            <td>Timber quote, Soil name</td>
+            <td><span class="color-chip" style="--chip:#D4A843;">Ceylon Gold <code>#D4A843</code> stars</span></td>
+          </tr>
+          <tr>
+            <td class="component-name">Footer</td>
+            <td><span class="color-chip" style="--chip:#F8F5F1;">Cream <code>#F8F5F1</code></span></td>
+            <td><span class="color-chip" style="--chip:#6B5E56;">Driftwood <code>#6B5E56</code></span></td>
+            <td><span class="color-chip" style="--chip:#E5E0DA;">Shell <code>#E5E0DA</code> border</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════════════════════
+       7. PRINT & DIGITAL REFERENCE
+       ════════════════════════════════════════════════════ -->
+  <section>
+    <h2>Print &amp; Digital Reference</h2>
+    <div class="ref-grid">
+
+      <div class="ref-card">
+        <h3>CMYK Equivalents</h3>
+        <div class="cmyk-row">
+          <div class="cmyk-swatch" style="background:#A87A48;"></div>
+          <div class="cmyk-detail">
+            <span class="cmyk-name">Cinnamon</span>
+            <span class="cmyk-values">C:0 &ensp; M:32 &ensp; Y:58 &ensp; K:23</span>
+          </div>
+        </div>
+        <div class="cmyk-row">
+          <div class="cmyk-swatch" style="background:#7DA3A0;"></div>
+          <div class="cmyk-detail">
+            <span class="cmyk-name">Wetland Teal</span>
+            <span class="cmyk-values">C:36 &ensp; M:5 &ensp; Y:12 &ensp; K:22</span>
+          </div>
+        </div>
+        <div class="cmyk-row">
+          <div class="cmyk-swatch" style="background:#F8F5F1;"></div>
+          <div class="cmyk-detail">
+            <span class="cmyk-name">Cream</span>
+            <span class="cmyk-values">C:0 &ensp; M:2 &ensp; Y:4 &ensp; K:4</span>
+          </div>
+        </div>
+        <div class="cmyk-row">
+          <div class="cmyk-swatch" style="background:#2C2520;"></div>
+          <div class="cmyk-detail">
+            <span class="cmyk-name">Soil</span>
+            <span class="cmyk-values">C:0 &ensp; M:12 &ensp; Y:17 &ensp; K:83</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="ref-card">
+        <h3>Social Media</h3>
+        <ul>
+          <li>Use Cream (#F8F5F1) backgrounds for posts and stories</li>
+          <li>Set typography in Cinnamon tones for warmth</li>
+          <li>Apply Wetland Teal as accent color for icons, borders, and highlights</li>
+          <li>Maintain 60/30/10 ratio even in small-format assets</li>
+        </ul>
+      </div>
+
+      <div class="ref-card">
+        <h3>Photography Overlays</h3>
+        <ul>
+          <li>Use semi-transparent Cream overlays (<code>#F5F0EB</code> at 85% opacity) for text legibility</li>
+          <li>Avoid dark gradient overlays &mdash; they conflict with the warm, airy brand feel</li>
+          <li>Photos should feel light, natural, and grounded in the Sri Lankan landscape</li>
+        </ul>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ── Footer ─────────────────────────────────────── -->
+  <footer class="page-footer">
+    <p>Wetland Heights Brand Guidelines &middot; February 2026</p>
+    <p>Internal reference &mdash; not for public distribution</p>
+  </footer>
+
+</div>
+
+</body>
+</html>
