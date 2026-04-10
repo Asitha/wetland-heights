@@ -4,7 +4,7 @@
   "description": "Markdown-to-HTML template engine for guest appliance guides",
   "main": "lib/index.js",
   "scripts": {
-    "test": "node --test __tests__/**/*.test.js",
+    "test": "node --test __tests__/*.test.js",
     "build": "node build.js --all"
   },
   "dependencies": {
