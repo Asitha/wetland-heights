@@ -1,0 +1,16 @@
+{
+  "name": "@wetlandheights/guide-engine",
+  "version": "0.1.0",
+  "description": "Markdown-to-HTML template engine for guest appliance guides",
+  "main": "lib/index.js",
+  "scripts": {
+    "test": "node --test __tests__/**/*.test.js",
+    "build": "node build.js --all"
+  },
+  "dependencies": {
+    "glob": "^11.0.0",
+    "gray-matter": "^4.0.3",
+    "handlebars": "^4.7.9",
+    "marked": "^15.0.0"
+  }
+}

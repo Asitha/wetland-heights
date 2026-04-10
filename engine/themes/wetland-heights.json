@@ -1,0 +1,42 @@
+{
+  "name": "wetland-heights",
+  "colors": {
+    "bg": "#F8F5F1",
+    "surface": "#FFFFFF",
+    "text": "#2C2520",
+    "textSecondary": "#4a3f39",
+    "textMuted": "#6B5E56",
+    "accent": "#8C6338",
+    "accentHover": "#7A5530",
+    "border": "#E5E0DA",
+    "botanical": "#5A7A5E",
+    "header": {
+      "gradient": "linear-gradient(135deg, #4D7370 0%, #5a8a86 50%, #8EB4B1 100%)",
+      "bar": "#8C6338"
+    },
+    "callout": {
+      "pod": { "bg": "#FFF8E1", "border": "#D4A843", "strong": "#8C6338" },
+      "tip": { "bg": "#EDF5F4", "border": "#8EB4B1", "strong": "#4D7370" },
+      "warn": { "bg": "#FDF0EE", "border": "#C0564A", "strong": "#C0564A" }
+    },
+    "tableHeaders": ["#5A7A5E", "#4D7370", "#7a7067"]
+  },
+  "fonts": {
+    "heading": "'Fraunces', Georgia, serif",
+    "body": "'Inter', -apple-system, BlinkMacSystemFont, sans-serif",
+    "googleFontsUrl": "https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400&family=Inter:wght@400;500;600;700&display=swap"
+  },
+  "layout": {
+    "maxWidth": "600px",
+    "borderRadius": {
+      "card": "12px",
+      "badge": "10px",
+      "tag": "6px",
+      "callout": "10px"
+    },
+    "shadow": {
+      "card": "0 1px 3px rgba(0,0,0,0.06)",
+      "table": "0 1px 3px rgba(0,0,0,0.08)"
+    }
+  }
+}

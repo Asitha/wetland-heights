@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{meta.title}}{{#if meta.subtitle}} — {{meta.subtitle}}{{/if}} | Wetland Heights</title>
+    {{#if meta.noindex}}<meta name="robots" content="noindex, nofollow">{{/if}}
+    <meta name="theme-color" content="{{themeColor}}">
+    {{#if meta.faviconPath}}<link rel="icon" type="image/svg+xml" href="{{meta.faviconPath}}">{{/if}}
+    {{#if fontsUrl}}<link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="{{{fontsUrl}}}" rel="stylesheet">{{/if}}
+    <style>{{{css}}}</style>
+</head>
+<body>
+
+<div class="header">
+    {{#if meta.icon}}<span class="header__icon" aria-hidden="true">{{meta.icon}}</span>{{/if}}
+    <h1 class="header__title">{{meta.title}}</h1>
+    {{#if meta.subtitle}}<p class="header__subtitle">{{meta.subtitle}}</p>{{/if}}
+</div>
+
+<div class="page">
+    {{{content}}}
+
+    <div class="footer">
+        <a href="{{#if meta.footerUrl}}{{meta.footerUrl}}{{else}}/{{/if}}">{{#if meta.footerText}}{{meta.footerText}}{{else}}Wetland Heights{{/if}}</a>
+    </div>
+</div>
+
+</body>
+</html>

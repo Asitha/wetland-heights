@@ -1,0 +1,59 @@
+name: Build & Deploy
+
+on:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deploy.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Install engine dependencies
+        working-directory: engine
+        run: npm ci
+
+      - name: Run tests
+        working-directory: engine
+        run: npm test
+
+      - name: Build pages from markdown
+        working-directory: engine
+        run: node build.js --all --content ../content --out ../_site
+
+      - name: Assemble site
+        run: |
+          cp index.html _site/
+          cp 404.html _site/
+          cp CNAME _site/
+          cp robots.txt _site/
+          cp sitemap.xml _site/
+          cp -r assets _site/
+          cp -r docs _site/ 2>/dev/null || true
+
+      - uses: actions/configure-pages@v5
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+
+      - name: Deploy to GitHub Pages
+        id: deploy
+        uses: actions/deploy-pages@v4
