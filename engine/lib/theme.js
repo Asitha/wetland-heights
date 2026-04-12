@@ -241,6 +241,74 @@ body {
     gap: 8px;
 }
 
+/* ---- Collapsible details ---- */
+.details {
+    background: ${colors.surface};
+    border-radius: ${layout.borderRadius.card};
+    margin-bottom: 16px;
+    box-shadow: ${layout.shadow.card};
+    overflow: hidden;
+}
+.details__summary {
+    padding: 14px 20px;
+    font-weight: 600;
+    font-size: 0.92rem;
+    cursor: pointer;
+    list-style: none;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    color: ${colors.text};
+}
+.details__summary::after {
+    content: '+';
+    font-size: 1.2rem;
+    color: ${colors.textMuted};
+    transition: transform 0.2s ease;
+}
+.details[open] > .details__summary::after {
+    content: '−';
+}
+.details__summary::-webkit-details-marker {
+    display: none;
+}
+.details__content {
+    padding: 0 20px 16px;
+    font-size: 0.88rem;
+    color: ${colors.textSecondary};
+    line-height: 1.6;
+}
+
+/* ---- Generic tables ---- */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.85rem;
+    margin: 12px 0;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: ${layout.shadow.table};
+}
+table th {
+    background: ${colors.accent};
+    color: #fff;
+    padding: 10px 12px;
+    text-align: left;
+    font-weight: 600;
+    font-size: 0.82rem;
+}
+table td {
+    padding: 10px 12px;
+    background: ${colors.surface};
+    border-bottom: 1px solid ${colors.border};
+    color: ${colors.textSecondary};
+    vertical-align: top;
+    line-height: 1.45;
+}
+table tr:last-child td {
+    border-bottom: none;
+}
+
 /* ---- Don't list ---- */
 .dont-list {
     list-style: none;

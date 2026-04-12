@@ -94,7 +94,61 @@ describe('callout rendering', () => {
     test(name, () => {
       const result = parseContent(`---\ntitle: Test\n---\n${input}`);
       for (const { check, value } of assertions) {
-        assert.ok(result.html.includes(value), `Expected HTML to contain "${value}"`);
+        if (check === 'contains') {
+          assert.ok(result.html.includes(value), `Expected HTML to contain "${value}"`);
+        } else if (check === 'notContains') {
+          assert.ok(!result.html.includes(value), `Expected HTML NOT to contain "${value}"`);
+        }
+      }
+    });
+  }
+
+  // ── Inline markdown rendering inside callouts ──────────
+
+  const calloutMarkdownCases = [
+    {
+      name: 'bold in callout list items renders as <strong>',
+      input: '> [!warn] Warning\n> - **Do not** force the door\n> - Avoid **overloading**',
+      assertions: [
+        { check: 'contains', value: '<strong>Do not</strong>' },
+        { check: 'contains', value: '<strong>overloading</strong>' },
+        { check: 'notContains', value: '**Do not**' },
+      ],
+    },
+    {
+      name: 'italic in callout list items renders as <em>',
+      input: '> [!tip] Tips\n> - Use *gentle* cycle\n> - Add *small* amounts',
+      assertions: [
+        { check: 'contains', value: '<em>gentle</em>' },
+        { check: 'notContains', value: '*gentle*' },
+      ],
+    },
+    {
+      name: 'bold in non-list callout body renders as <strong>',
+      input: '> [!tip] Note\n> Always use **cold water** for dark fabrics.',
+      assertions: [
+        { check: 'contains', value: '<strong>cold water</strong>' },
+        { check: 'notContains', value: '**cold water**' },
+      ],
+    },
+    {
+      name: 'link in callout body renders as <a>',
+      input: '> [!tip] Reference\n> See [the guide](https://example.com) for more.',
+      assertions: [
+        { check: 'contains', value: 'href="https://example.com"' },
+      ],
+    },
+  ];
+
+  for (const { name, input, assertions } of calloutMarkdownCases) {
+    test(name, () => {
+      const result = parseContent(`---\ntitle: Test\n---\n${input}`);
+      for (const { check, value } of assertions) {
+        if (check === 'contains') {
+          assert.ok(result.html.includes(value), `Expected HTML to contain "${value}"`);
+        } else if (check === 'notContains') {
+          assert.ok(!result.html.includes(value), `Expected HTML NOT to contain "${value}"`);
+        }
       }
     });
   }
@@ -150,13 +204,25 @@ describe('step heading rendering', () => {
         { check: 'contains', value: 'Paragraph two.' },
       ],
     },
+    {
+      name: 'bold in step body renders as <strong>',
+      input: '## 1. Load\n\nUse **cold water** for darks.',
+      assertions: [
+        { check: 'contains', value: '<strong>cold water</strong>' },
+        { check: 'notContains', value: '**cold water**' },
+      ],
+    },
   ];
 
   for (const { name, input, assertions } of stepCases) {
     test(name, () => {
       const result = parseContent(`---\ntitle: Test\n---\n${input}`);
       for (const { check, value } of assertions) {
-        assert.ok(result.html.includes(value), `Expected HTML to contain "${value}"`);
+        if (check === 'contains') {
+          assert.ok(result.html.includes(value), `Expected HTML to contain "${value}"`);
+        } else if (check === 'notContains') {
+          assert.ok(!result.html.includes(value), `Expected HTML NOT to contain "${value}"`);
+        }
       }
     });
   }
@@ -172,6 +238,31 @@ describe('step heading rendering', () => {
     const result = parseContent(`---\ntitle: Test\n---\n${input}`);
     const stepCount = (result.html.match(/<div class="step">/g) || []).length;
     assert.equal(stepCount, 3, 'Should produce 3 step cards');
+  });
+
+  test('section card after last step is NOT nested inside the step', () => {
+    const input = '## 1. First\n\nStep body.\n\n:::section ☀️ Drying\nRack available.\n:::';
+    const result = parseContent(`---\ntitle: Test\n---\n${input}`);
+    // The section div should NOT be inside the step div
+    const stepEnd = result.html.indexOf('</div>\n</div>'); // end of step card
+    const sectionStart = result.html.indexOf('<div class="section">');
+    assert.ok(sectionStart > stepEnd, 'Section card should appear after step card closes');
+  });
+
+  test('callout after last step is NOT nested inside the step', () => {
+    const input = '## 1. First\n\nStep body.\n\n> [!tip] Keep Fresh\n> - Wipe the seal.';
+    const result = parseContent(`---\ntitle: Test\n---\n${input}`);
+    const stepEnd = result.html.indexOf('</div>\n</div>');
+    const calloutStart = result.html.indexOf('<div class="callout');
+    assert.ok(calloutStart > stepEnd, 'Callout should appear after step card closes');
+  });
+
+  test('details after last step is NOT nested inside the step', () => {
+    const input = '## 1. First\n\nStep body.\n\n:::details More Info\nExtra details.\n:::';
+    const result = parseContent(`---\ntitle: Test\n---\n${input}`);
+    const stepEnd = result.html.indexOf('</div>\n</div>');
+    const detailsStart = result.html.indexOf('<details class="details">');
+    assert.ok(detailsStart > stepEnd, 'Details should appear after step card closes');
   });
 });
 

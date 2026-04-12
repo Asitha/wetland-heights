@@ -124,6 +124,9 @@ describe('generateCSS', () => {
     { name: 'dont list', selector: '.dont-list' },
     { name: 'care list', selector: '.care-list' },
     { name: 'footer', selector: '.footer' },
+    { name: 'details element', selector: '.details' },
+    { name: 'details summary', selector: '.details__summary' },
+    { name: 'details content', selector: '.details__content' },
   ];
 
   for (const { name, selector } of selectorCases) {

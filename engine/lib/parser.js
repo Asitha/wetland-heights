@@ -65,6 +65,7 @@ function preprocessCallouts(input) {
  * Render a callout block as HTML.
  */
 function renderCallout(type, title, body) {
+  const { marked } = require('marked');
   const listClass = type === 'warn' ? 'dont-list' : 'care-list';
 
   // Check if body contains a markdown list
@@ -76,11 +77,11 @@ function renderCallout(type, title, body) {
       .trim()
       .split('\n')
       .filter(l => l.trim().startsWith('-'))
-      .map(l => `<li>${l.replace(/^-\s*/, '')}</li>`)
+      .map(l => `<li>${marked.parseInline(l.replace(/^-\s*/, ''))}</li>`)
       .join('\n');
     bodyHtml = `<ul class="${listClass}">\n${items}\n</ul>`;
   } else {
-    bodyHtml = `<p>${body.trim()}</p>`;
+    bodyHtml = marked.parse(body.trim());
   }
 
   const titleHtml = title
@@ -124,10 +125,23 @@ function wrapStepHeadings(html) {
   // Content before first step
   result += html.slice(0, matches[0].index);
 
+  // Pattern to detect non-step block elements that should break out of steps
+  const breakPattern = /<div class="(?:section|callout)|<details class="details">/;
+
   for (let i = 0; i < matches.length; i++) {
     const step = matches[i];
-    const nextStart = i + 1 < matches.length ? matches[i + 1].index : html.length;
-    const body = html.slice(step.end, nextStart).trim();
+    const nextStepStart = i + 1 < matches.length ? matches[i + 1].index : html.length;
+    const regionAfterHeading = html.slice(step.end, nextStepStart);
+
+    // For the last step, check if there's a block element that should break out
+    let bodyEnd = regionAfterHeading.length;
+    const breakMatch = regionAfterHeading.search(breakPattern);
+    if (breakMatch !== -1 && (i + 1 >= matches.length)) {
+      bodyEnd = breakMatch;
+    }
+
+    const body = regionAfterHeading.slice(0, bodyEnd).trim();
+    const after = regionAfterHeading.slice(bodyEnd);
 
     result += `<div class="step">
 <div class="step__number">${step.number}</div>
@@ -136,6 +150,11 @@ function wrapStepHeadings(html) {
 ${body}
 </div>
 </div>\n`;
+
+    // Append any content after the break point (sections, callouts, details)
+    if (after) {
+      result += after;
+    }
   }
 
   return result;
