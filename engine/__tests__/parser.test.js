@@ -239,6 +239,31 @@ describe('step heading rendering', () => {
     const stepCount = (result.html.match(/<div class="step">/g) || []).length;
     assert.equal(stepCount, 3, 'Should produce 3 step cards');
   });
+
+  test('section card after last step is NOT nested inside the step', () => {
+    const input = '## 1. First\n\nStep body.\n\n:::section ☀️ Drying\nRack available.\n:::';
+    const result = parseContent(`---\ntitle: Test\n---\n${input}`);
+    // The section div should NOT be inside the step div
+    const stepEnd = result.html.indexOf('</div>\n</div>'); // end of step card
+    const sectionStart = result.html.indexOf('<div class="section">');
+    assert.ok(sectionStart > stepEnd, 'Section card should appear after step card closes');
+  });
+
+  test('callout after last step is NOT nested inside the step', () => {
+    const input = '## 1. First\n\nStep body.\n\n> [!tip] Keep Fresh\n> - Wipe the seal.';
+    const result = parseContent(`---\ntitle: Test\n---\n${input}`);
+    const stepEnd = result.html.indexOf('</div>\n</div>');
+    const calloutStart = result.html.indexOf('<div class="callout');
+    assert.ok(calloutStart > stepEnd, 'Callout should appear after step card closes');
+  });
+
+  test('details after last step is NOT nested inside the step', () => {
+    const input = '## 1. First\n\nStep body.\n\n:::details More Info\nExtra details.\n:::';
+    const result = parseContent(`---\ntitle: Test\n---\n${input}`);
+    const stepEnd = result.html.indexOf('</div>\n</div>');
+    const detailsStart = result.html.indexOf('<details class="details">');
+    assert.ok(detailsStart > stepEnd, 'Details should appear after step card closes');
+  });
 });
 
 // ── Plain markdown passthrough ─────────────────────────────
