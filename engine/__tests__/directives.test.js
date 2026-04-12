@@ -41,7 +41,11 @@ describe(':::section directive', () => {
     test(name, () => {
       const result = processDirectives(input);
       for (const { check, value } of assertions) {
-        assert.ok(result.includes(value), `Expected output to contain "${value}"`);
+        if (check === 'contains') {
+          assert.ok(result.includes(value), `Expected output to contain "${value}"`);
+        } else if (check === 'notContains') {
+          assert.ok(!result.includes(value), `Expected output NOT to contain "${value}"`);
+        }
       }
     });
   }
@@ -76,13 +80,26 @@ describe(':::cycles directive', () => {
         { check: 'contains', value: 'saves water' },
       ],
     },
+    {
+      name: 'cycle labels render as <strong> tags',
+      input: ':::cycles\n- **Quick 30** — ~30 min\n- **Cotton** — towels\n:::',
+      assertions: [
+        { check: 'contains', value: '<strong>Quick 30</strong>' },
+        { check: 'contains', value: '<strong>Cotton</strong>' },
+        { check: 'notContains', value: '**Quick 30**' },
+      ],
+    },
   ];
 
   for (const { name, input, assertions } of cases) {
     test(name, () => {
       const result = processDirectives(input);
       for (const { check, value } of assertions) {
-        assert.ok(result.includes(value), `Expected output to contain "${value}"`);
+        if (check === 'contains') {
+          assert.ok(result.includes(value), `Expected output to contain "${value}"`);
+        } else if (check === 'notContains') {
+          assert.ok(!result.includes(value), `Expected output NOT to contain "${value}"`);
+        }
       }
     });
   }
@@ -126,7 +143,11 @@ describe(':::drawer-table directive', () => {
     test(name, () => {
       const result = processDirectives(input);
       for (const { check, value } of assertions) {
-        assert.ok(result.includes(value), `Expected output to contain "${value}"`);
+        if (check === 'contains') {
+          assert.ok(result.includes(value), `Expected output to contain "${value}"`);
+        } else if (check === 'notContains') {
+          assert.ok(!result.includes(value), `Expected output NOT to contain "${value}"`);
+        }
       }
     });
   }
@@ -170,13 +191,56 @@ describe(':::details directive', () => {
         { check: 'contains', value: 'Content here.' },
       ],
     },
+    {
+      name: 'parses bold markdown in body to <strong>',
+      input: ':::details Title\nUse **high heat** for boiling.\n:::',
+      assertions: [
+        { check: 'contains', value: '<strong>high heat</strong>' },
+        { check: 'notContains', value: '**high heat**' },
+      ],
+    },
+    {
+      name: 'parses italic markdown in body to <em>',
+      input: ':::details Title\nThis is *important* info.\n:::',
+      assertions: [
+        { check: 'contains', value: '<em>important</em>' },
+        { check: 'notContains', value: '*important*' },
+      ],
+    },
+    {
+      name: 'parses list items in body to <li> elements',
+      input: ':::details Tips\n- Level 1-2: warming\n- Level 9: boiling\n:::',
+      assertions: [
+        { check: 'contains', value: '<ul>' },
+        { check: 'contains', value: '<li>' },
+      ],
+    },
+    {
+      name: 'parses bold inside list items in body',
+      input: ':::details Settings\n- **Low**: for simmering\n- **High**: for boiling\n:::',
+      assertions: [
+        { check: 'contains', value: '<strong>Low</strong>' },
+        { check: 'notContains', value: '**Low**' },
+      ],
+    },
+    {
+      name: 'parses links in body to <a> tags',
+      input: ':::details Links\nSee [the manual](https://example.com) for details.\n:::',
+      assertions: [
+        { check: 'contains', value: 'href="https://example.com"' },
+      ],
+    },
   ];
 
   for (const { name, input, assertions } of cases) {
     test(name, () => {
       const result = processDirectives(input);
       for (const { check, value } of assertions) {
-        assert.ok(result.includes(value), `Expected output to contain "${value}"`);
+        if (check === 'contains') {
+          assert.ok(result.includes(value), `Expected output to contain "${value}"`);
+        } else if (check === 'notContains') {
+          assert.ok(!result.includes(value), `Expected output NOT to contain "${value}"`);
+        }
       }
     });
   }

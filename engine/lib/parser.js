@@ -65,6 +65,7 @@ function preprocessCallouts(input) {
  * Render a callout block as HTML.
  */
 function renderCallout(type, title, body) {
+  const { marked } = require('marked');
   const listClass = type === 'warn' ? 'dont-list' : 'care-list';
 
   // Check if body contains a markdown list
@@ -76,11 +77,11 @@ function renderCallout(type, title, body) {
       .trim()
       .split('\n')
       .filter(l => l.trim().startsWith('-'))
-      .map(l => `<li>${l.replace(/^-\s*/, '')}</li>`)
+      .map(l => `<li>${marked.parseInline(l.replace(/^-\s*/, ''))}</li>`)
       .join('\n');
     bodyHtml = `<ul class="${listClass}">\n${items}\n</ul>`;
   } else {
-    bodyHtml = `<p>${body.trim()}</p>`;
+    bodyHtml = marked.parse(body.trim());
   }
 
   const titleHtml = title
