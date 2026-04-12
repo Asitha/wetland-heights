@@ -19,6 +19,8 @@ function processDirectives(input) {
         return renderCycles(body.trim());
       case 'drawer-table':
         return renderDrawerTable(body.trim());
+      case 'details':
+        return renderDetails(args || '', body.trim());
       default:
         return match; // unknown directive, leave as-is
     }
@@ -63,6 +65,17 @@ function renderCycles(body) {
     });
 
   return `<div class="cycles">\n${items.join('\n')}\n</div>`;
+}
+
+function renderDetails(title, body) {
+  const { marked } = require('marked');
+  const parsedBody = marked.parse(body);
+  return `<details class="details">
+<summary class="details__summary">${title}</summary>
+<div class="details__content">
+${parsedBody}
+</div>
+</details>`;
 }
 
 function renderDrawerTable(body) {

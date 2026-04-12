@@ -1,7 +1,7 @@
 ---
 title: Your Laundry Guide
-subtitle: "LG 8kg Steam Direct Drive Front Loader &middot; Unit 6E"
-icon: "&#x1F9FA;"
+subtitle: "LG 8kg Steam Direct Drive Front Loader · Unit 6E"
+icon: "🧺"
 noindex: true
 faviconPath: /assets/images/favicon.svg
 ---

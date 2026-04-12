@@ -138,6 +138,56 @@ describe(':::drawer-table directive', () => {
   });
 });
 
+// ── :::details directive ───────────────────────────────────
+
+describe(':::details directive', () => {
+  const cases = [
+    {
+      name: 'renders collapsible details element',
+      input: ':::details Heat Settings\n- Level 1-2: warming\n- Level 9: boiling\n:::',
+      assertions: [
+        { check: 'contains', value: '<details class="details">' },
+        { check: 'contains', value: '<summary class="details__summary">' },
+        { check: 'contains', value: 'Heat Settings' },
+        { check: 'contains', value: '<div class="details__content">' },
+        { check: 'contains', value: 'Level 1-2: warming' },
+      ],
+    },
+    {
+      name: 'renders multi-line content',
+      input: ':::details Cleaning Tips\nWipe while warm.\nUse a damp cloth.\n:::',
+      assertions: [
+        { check: 'contains', value: 'Cleaning Tips' },
+        { check: 'contains', value: 'Wipe while warm.' },
+        { check: 'contains', value: 'Use a damp cloth.' },
+      ],
+    },
+    {
+      name: 'handles title with emoji',
+      input: ':::details 🔥 Heat Guide\nContent here.\n:::',
+      assertions: [
+        { check: 'contains', value: '🔥 Heat Guide' },
+        { check: 'contains', value: 'Content here.' },
+      ],
+    },
+  ];
+
+  for (const { name, input, assertions } of cases) {
+    test(name, () => {
+      const result = processDirectives(input);
+      for (const { check, value } of assertions) {
+        assert.ok(result.includes(value), `Expected output to contain "${value}"`);
+      }
+    });
+  }
+
+  test('does not contain raw ::: markers in output', () => {
+    const input = ':::details Title\nBody.\n:::';
+    const result = processDirectives(input);
+    assert.ok(!result.includes(':::'), 'Output should not contain raw ::: markers');
+  });
+});
+
 // ── passthrough ────────────────────────────────────────────
 
 describe('passthrough', () => {
