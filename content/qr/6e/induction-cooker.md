@@ -67,6 +67,15 @@ Tap the **slider** near your desired level (near 0 = low, near 9 = high). The bl
 
 Tap the **zone selector** for the zone you used, then tap the slider near **0**. Turn off the cooktop with the **ON/OFF** button. The cooling fan may run for a minute after — that's completely normal.
 
+<div class="section">
+<!-- The section wrapper is load-bearing: wrapStepHeadings (engine/lib/parser.js) only breaks content out of the preceding numbered step card on a section/callout/details block. Remove it and this video gets nested inside step 4. -->
+<h3 class="section__title"><span aria-hidden="true">📺</span> Watch: Quick Demo</h3>
+<video class="guide-video" controls playsinline preload="metadata" aria-label="Induction cooktop demonstration">
+<source src="https://assets.wetlandheights.com/videos/induction-cooker-demo.mp4" type="video/mp4">
+Your browser doesn't support embedded video. <a href="https://assets.wetlandheights.com/videos/induction-cooker-demo.mp4">Download the demo video</a> instead.
+</video>
+</div>
+
 > [!tip] Display Showing Something Weird?
 > - **"U" flashing** — The pot isn't compatible with induction. Switch to one of the pots we've provided.
 > - **Controls not responding** — Wipe the touch panel dry. Even a thin film of water disables the controls. If still unresponsive, the child lock may be on — press and hold the lock icon for a few seconds.
