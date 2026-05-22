@@ -241,6 +241,15 @@ body {
     gap: 8px;
 }
 
+/* ---- Embedded video ---- */
+.guide-video {
+    display: block;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    border-radius: ${layout.borderRadius.callout};
+    background: ${colors.text};
+}
+
 /* ---- Collapsible details ---- */
 .details {
     background: ${colors.surface};
