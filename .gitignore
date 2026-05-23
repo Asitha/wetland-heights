@@ -3,3 +3,6 @@ node_modules/
 engine/node_modules/
 _site/
 /qr/
+
+# Generated brand-guidelines PDFs (rebuild with scripts/generate-brand-guidelines-pdf.sh)
+docs/brand-guidelines-*.pdf
