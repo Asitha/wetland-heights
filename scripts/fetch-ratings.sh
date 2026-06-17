@@ -8,6 +8,7 @@
 LISTINGS=(
     "Nugegoda Residence · 1 BR|https://airbnb.com/h/nugegoda-king-room"
     "Nugegoda Residence · 2 BR|https://airbnb.com/h/nugegoda-residence"
+    "The Crown · Studio (Kotte)|https://airbnb.com.sg/h/the-crown-at-wetland-heights"
 )
 
 UA="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
