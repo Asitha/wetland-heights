@@ -501,6 +501,7 @@ button:focus-visible,
     min-height: 36px;
     display: inline-flex;
     align-items: center;
+    background: rgba(44, 37, 32, 0.72);  /* fallback for browsers without color-mix */
     background: color-mix(in srgb, var(--color-text) 72%, transparent);
     color: #fff;
     font-size: 0.75rem;
@@ -514,6 +515,7 @@ button:focus-visible,
 }
 
 .property-card__tab:hover {
+    background: rgba(44, 37, 32, 0.9);   /* fallback */
     background: color-mix(in srgb, var(--color-text) 90%, transparent);
 }
 
