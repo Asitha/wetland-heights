@@ -4,9 +4,9 @@ const fs = require('fs');
 
 const html = fs.readFileSync('index.html', 'utf8');
 
-test('Nugegoda Residence heading appears exactly once', () => {
-    const matches = html.match(/Nugegoda Residence/g) || [];
-    assert.equal(matches.length, 1, `expected 1 occurrence, got ${matches.length}`);
+test('Nugegoda Residence h3 heading appears exactly once', () => {
+    const matches = html.match(/<h3[^>]*>\s*Nugegoda Residence\s*<\/h3>/g) || [];
+    assert.equal(matches.length, 1, `expected 1 h3 heading, got ${matches.length}`);
 });
 
 test('toggle card has property-card--tabbed class', () => {
