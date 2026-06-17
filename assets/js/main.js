@@ -100,4 +100,43 @@
             reveals[m].classList.add('reveal--visible');
         }
     }
+
+    // Unit toggle for property cards with multiple room options
+    var tabbedCards = document.querySelectorAll('.property-card--tabbed');
+    for (var t = 0; t < tabbedCards.length; t++) {
+        (function () {
+            var tabs = Array.prototype.slice.call(tabbedCards[t].querySelectorAll('.property-card__tab'));
+            var card = tabbedCards[t];
+
+            function activate(unit) {
+                tabs.forEach(function (tab) {
+                    var isActive = tab.getAttribute('data-unit') === unit;
+                    tab.classList.toggle('is-active', isActive);
+                    tab.setAttribute('aria-selected', String(isActive));
+                    tab.setAttribute('tabindex', isActive ? '0' : '-1');
+                });
+                var unitEls = card.querySelectorAll('[data-unit]');
+                for (var k = 0; k < unitEls.length; k++) {
+                    var el = unitEls[k];
+                    if (el.classList.contains('property-card__tab')) continue;
+                    el.hidden = el.getAttribute('data-unit') !== unit;
+                }
+            }
+
+            tabs.forEach(function (tab, idx) {
+                tab.addEventListener('click', function () {
+                    activate(tab.getAttribute('data-unit'));
+                });
+                tab.addEventListener('keydown', function (e) {
+                    var next;
+                    if (e.key === 'ArrowRight') next = tabs[(idx + 1) % tabs.length];
+                    else if (e.key === 'ArrowLeft') next = tabs[(idx - 1 + tabs.length) % tabs.length];
+                    else return;
+                    e.preventDefault();
+                    activate(next.getAttribute('data-unit'));
+                    next.focus();
+                });
+            });
+        }());
+    }
 })();
