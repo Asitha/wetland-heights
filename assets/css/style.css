@@ -488,6 +488,11 @@ button:focus-visible,
     opacity: 0.85;
 }
 
+.property-card__unit-img {
+    position: absolute;
+    inset: 0;
+}
+
 .property-card__tabs {
     position: absolute;
     top: 12px;
