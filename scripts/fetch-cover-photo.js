@@ -46,16 +46,16 @@ function download(src, dest) {
   await page.goto(url, { waitUntil: 'domcontentloaded', timeout: 30000 });
   await page.waitForTimeout(3000);
 
-  // Collect all large images from the photo gallery
+  // Collect listing photos only — must be hosting images, not platform assets or profiles
   const imgSrcs = await page.evaluate(() => {
     const imgs = Array.from(document.querySelectorAll('img'));
     return imgs
       .map(img => img.src)
       .filter(src =>
         src &&
-        (src.includes('airbnb.com/im/pictures') || src.includes('a0.muscache.com')) &&
-        !src.includes('profile_pic') &&
-        !src.includes('user_profile')
+        src.includes('muscache.com') &&
+        src.includes('/hosting/Hosting-') &&
+        !src.includes('profile')
       );
   });
 
