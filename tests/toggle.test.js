@@ -45,7 +45,7 @@ test('1BR elements are visible by default', () => {
 test('clicking 2BR tab shows 2br panel and hides 1br panel', () => {
     const { dom, card } = makeCard();
     const { initToggle } = require('../assets/js/toggle.js');
-    initToggle(card, dom.window);
+    initToggle(card);
 
     card.querySelector('[data-unit="2br"].property-card__tab').click();
 
@@ -58,7 +58,7 @@ test('clicking 2BR tab shows 2br panel and hides 1br panel', () => {
 test('clicking 2BR sets is-active and aria-selected correctly', () => {
     const { dom, card } = makeCard();
     const { initToggle } = require('../assets/js/toggle.js');
-    initToggle(card, dom.window);
+    initToggle(card);
 
     card.querySelector('[data-unit="2br"].property-card__tab').click();
 
@@ -73,7 +73,7 @@ test('clicking 2BR sets is-active and aria-selected correctly', () => {
 test('clicking 2BR gives 2br tab tabindex=0, 1br tabindex=-1 (roving tabindex)', () => {
     const { dom, card } = makeCard();
     const { initToggle } = require('../assets/js/toggle.js');
-    initToggle(card, dom.window);
+    initToggle(card);
 
     card.querySelector('[data-unit="2br"].property-card__tab').click();
 
@@ -84,7 +84,7 @@ test('clicking 2BR gives 2br tab tabindex=0, 1br tabindex=-1 (roving tabindex)',
 test('ArrowRight key on 1br tab activates 2br tab', () => {
     const { dom, card } = makeCard();
     const { initToggle } = require('../assets/js/toggle.js');
-    initToggle(card, dom.window);
+    initToggle(card);
 
     const tab1 = card.querySelector('[data-unit="1br"].property-card__tab');
     tab1.dispatchEvent(new dom.window.KeyboardEvent('keydown', { key: 'ArrowRight', bubbles: true }));
@@ -96,7 +96,7 @@ test('ArrowRight key on 1br tab activates 2br tab', () => {
 test('ArrowLeft key on 2br tab activates 1br tab', () => {
     const { dom, card } = makeCard();
     const { initToggle } = require('../assets/js/toggle.js');
-    initToggle(card, dom.window);
+    initToggle(card);
 
     // First activate 2br
     card.querySelector('[data-unit="2br"].property-card__tab').click();
@@ -111,7 +111,7 @@ test('ArrowLeft key on 2br tab activates 1br tab', () => {
 test('clicking back to 1BR restores 1br state', () => {
     const { dom, card } = makeCard();
     const { initToggle } = require('../assets/js/toggle.js');
-    initToggle(card, dom.window);
+    initToggle(card);
 
     card.querySelector('[data-unit="2br"].property-card__tab').click();
     card.querySelector('[data-unit="1br"].property-card__tab').click();
@@ -119,4 +119,19 @@ test('clicking back to 1BR restores 1br state', () => {
     assert.equal(card.querySelector('img[data-unit="1br"]').hidden, false);
     assert.equal(card.querySelector('img[data-unit="2br"]').hidden, true);
     assert.equal(card.querySelector('[role="tabpanel"][data-unit="1br"]').hidden, false);
+});
+
+test('clicking 2BR hides inner specs, rating, and CTA of 1br panel', () => {
+    const { dom, card } = makeCard();
+    const { initToggle } = require('../assets/js/toggle.js');
+    initToggle(card);
+
+    card.querySelector('[data-unit="2br"].property-card__tab').click();
+
+    assert.equal(card.querySelector('.property-card__specs[data-unit="1br"]').hidden, true, '1br specs hidden');
+    assert.equal(card.querySelector('.property-card__rating[data-unit="1br"]').hidden, true, '1br rating hidden');
+    assert.equal(card.querySelector('.property-card__cta[data-unit="1br"]').hidden, true, '1br CTA hidden');
+    assert.equal(card.querySelector('.property-card__specs[data-unit="2br"]').hidden, false, '2br specs visible');
+    assert.equal(card.querySelector('.property-card__rating[data-unit="2br"]').hidden, false, '2br rating visible');
+    assert.equal(card.querySelector('.property-card__cta[data-unit="2br"]').hidden, false, '2br CTA visible');
 });

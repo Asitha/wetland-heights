@@ -1,6 +1,6 @@
 'use strict';
 
-function initToggle(card, win) {
+function initToggle(card) {
     var tabs = Array.prototype.slice.call(card.querySelectorAll('.property-card__tab'));
 
     function activate(unit) {
