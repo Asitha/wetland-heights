@@ -100,4 +100,10 @@
             reveals[m].classList.add('reveal--visible');
         }
     }
+
+    // Unit toggle for property cards with multiple room options
+    var tabbedCards = document.querySelectorAll('.property-card--tabbed');
+    for (var t = 0; t < tabbedCards.length; t++) {
+        initToggle(tabbedCards[t]);
+    }
 })();
