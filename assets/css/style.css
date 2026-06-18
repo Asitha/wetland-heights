@@ -491,41 +491,53 @@ button:focus-visible,
 .property-card__unit-img {
     position: absolute;
     inset: 0;
+    opacity: 0;
+    pointer-events: none;
+}
+
+.property-card__unit-img.is-active {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+    .property-card__unit-img {
+        transition: opacity 0.3s ease;
+    }
 }
 
 .property-card__tabs {
-    position: absolute;
-    top: 12px;
-    right: 12px;
     display: flex;
     gap: 4px;
+    margin-bottom: 12px;
 }
 
 .property-card__tab {
-    padding: 4px 12px;
+    padding: 4px 14px;
     min-height: 36px;
     display: inline-flex;
     align-items: center;
-    background: rgba(44, 37, 32, 0.72);  /* fallback for browsers without color-mix */
-    background: color-mix(in srgb, var(--color-text) 72%, transparent);
-    color: #fff;
-    font-size: 0.75rem;
+    background: transparent;
+    color: var(--color-text-secondary);
+    font-size: 0.813rem;
     font-weight: 600;
     border-radius: 20px;
-    border: none;
+    border: 1px solid var(--color-border);
     cursor: pointer;
     letter-spacing: 0.02em;
-    transition: background var(--transition);
+    transition: background var(--transition), color var(--transition);
     -webkit-tap-highlight-color: transparent;
 }
 
 .property-card__tab:hover {
-    background: rgba(44, 37, 32, 0.9);   /* fallback */
-    background: color-mix(in srgb, var(--color-text) 90%, transparent);
+    background: var(--color-surface);
+    color: var(--color-text);
 }
 
 .property-card__tab.is-active {
     background: var(--color-accent);
+    color: #fff;
+    border-color: var(--color-accent);
 }
 
 .property-card__tab:focus-visible {
