@@ -1,4 +1,4 @@
-const { test, beforeEach } = require('node:test');
+const { test } = require('node:test');
 const assert = require('node:assert/strict');
 const { JSDOM } = require('jsdom');
 
@@ -6,8 +6,10 @@ function makeCard() {
     const dom = new JSDOM(`
         <article class="property-card property-card--tabbed">
             <div class="property-card__image">
-                <img data-unit="1br" src="1br.jpg">
-                <img data-unit="2br" src="2br.jpg" hidden>
+                <img class="property-card__unit-img is-active" data-unit="1br" src="1br.jpg">
+                <img class="property-card__unit-img" data-unit="2br" src="2br.jpg">
+            </div>
+            <div class="property-card__body">
                 <div class="property-card__tabs" role="tablist">
                     <button class="property-card__tab is-active" role="tab"
                             aria-selected="true" aria-controls="panel-1br"
@@ -16,17 +18,15 @@ function makeCard() {
                             aria-selected="false" aria-controls="panel-2br"
                             data-unit="2br" tabindex="-1">2 BR</button>
                 </div>
-            </div>
-            <div class="property-card__body">
                 <div role="tabpanel" id="panel-1br" data-unit="1br">
                     <div class="property-card__specs" data-unit="1br">1BR specs</div>
                     <div class="property-card__rating" data-unit="1br">1BR rating</div>
                     <a class="property-card__cta" data-unit="1br" href="/1br">View 1BR</a>
                 </div>
                 <div role="tabpanel" id="panel-2br" data-unit="2br" hidden>
-                    <div class="property-card__specs" data-unit="2br" hidden>2BR specs</div>
-                    <div class="property-card__rating" data-unit="2br" hidden>2BR rating</div>
-                    <a class="property-card__cta" data-unit="2br" href="/2br" hidden>View 2BR</a>
+                    <div class="property-card__specs" data-unit="2br">2BR specs</div>
+                    <div class="property-card__rating" data-unit="2br">2BR rating</div>
+                    <a class="property-card__cta" data-unit="2br" href="/2br">View 2BR</a>
                 </div>
             </div>
         </article>
@@ -34,10 +34,10 @@ function makeCard() {
     return { dom, card: dom.window.document.querySelector('.property-card--tabbed') };
 }
 
-test('1BR elements are visible by default', () => {
+test('1BR image has is-active, 2BR image lacks it by default', () => {
     const { card } = makeCard();
-    assert.equal(card.querySelector('img[data-unit="1br"]').hidden, false);
-    assert.equal(card.querySelector('img[data-unit="2br"]').hidden, true);
+    assert.ok(card.querySelector('img[data-unit="1br"]').classList.contains('is-active'), '1br img must have is-active');
+    assert.ok(!card.querySelector('img[data-unit="2br"]').classList.contains('is-active'), '2br img must lack is-active');
     assert.equal(card.querySelector('[role="tabpanel"][data-unit="1br"]').hidden, false);
     assert.equal(card.querySelector('[role="tabpanel"][data-unit="2br"]').hidden, true);
 });
@@ -49,8 +49,8 @@ test('clicking 2BR tab shows 2br panel and hides 1br panel', () => {
 
     card.querySelector('[data-unit="2br"].property-card__tab').click();
 
-    assert.equal(card.querySelector('img[data-unit="2br"]').hidden, false, '2br img visible');
-    assert.equal(card.querySelector('img[data-unit="1br"]').hidden, true, '1br img hidden');
+    assert.ok(card.querySelector('img[data-unit="2br"]').classList.contains('is-active'), '2br img must have is-active');
+    assert.ok(!card.querySelector('img[data-unit="1br"]').classList.contains('is-active'), '1br img must lack is-active');
     assert.equal(card.querySelector('[role="tabpanel"][data-unit="2br"]').hidden, false, '2br panel visible');
     assert.equal(card.querySelector('[role="tabpanel"][data-unit="1br"]').hidden, true, '1br panel hidden');
 });
@@ -98,9 +98,7 @@ test('ArrowLeft key on 2br tab activates 1br tab', () => {
     const { initToggle } = require('../assets/js/toggle.js');
     initToggle(card);
 
-    // First activate 2br
     card.querySelector('[data-unit="2br"].property-card__tab').click();
-    // Then press ArrowLeft
     const tab2 = card.querySelector('[data-unit="2br"].property-card__tab');
     tab2.dispatchEvent(new dom.window.KeyboardEvent('keydown', { key: 'ArrowLeft', bubbles: true }));
 
@@ -116,8 +114,8 @@ test('clicking back to 1BR restores 1br state', () => {
     card.querySelector('[data-unit="2br"].property-card__tab').click();
     card.querySelector('[data-unit="1br"].property-card__tab').click();
 
-    assert.equal(card.querySelector('img[data-unit="1br"]').hidden, false);
-    assert.equal(card.querySelector('img[data-unit="2br"]').hidden, true);
+    assert.ok(card.querySelector('img[data-unit="1br"]').classList.contains('is-active'), '1br img has is-active');
+    assert.ok(!card.querySelector('img[data-unit="2br"]').classList.contains('is-active'), '2br img lacks is-active');
     assert.equal(card.querySelector('[role="tabpanel"][data-unit="1br"]').hidden, false);
 });
 

@@ -12,12 +12,16 @@ function initToggle(card) {
             tab.setAttribute('tabindex', isActive ? '0' : '-1');
         });
 
-        // Show/hide panels and images (skip the tab buttons themselves)
-        var unitEls = card.querySelectorAll('[data-unit]');
-        for (var k = 0; k < unitEls.length; k++) {
-            var el = unitEls[k];
-            if (el.classList.contains('property-card__tab')) continue;
-            el.hidden = el.getAttribute('data-unit') !== unit;
+        // Images: toggle is-active class (opacity crossfade, avoids hidden-on-absolute issues)
+        var imgs = card.querySelectorAll('.property-card__unit-img');
+        for (var i = 0; i < imgs.length; i++) {
+            imgs[i].classList.toggle('is-active', imgs[i].getAttribute('data-unit') === unit);
+        }
+
+        // Body content: toggle hidden attribute (reliable for flow elements)
+        var bodyEls = card.querySelectorAll('[data-unit]:not(.property-card__tab):not(.property-card__unit-img)');
+        for (var k = 0; k < bodyEls.length; k++) {
+            bodyEls[k].hidden = bodyEls[k].getAttribute('data-unit') !== unit;
         }
     }
 
