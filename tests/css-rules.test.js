@@ -22,6 +22,13 @@ test('property-card__unit-img.is-active is fully visible', () => {
     assert.ok(block.includes('opacity: 1'), 'active image must have opacity: 1');
 });
 
+test('opacity transition is gated on prefers-reduced-motion: no-preference', () => {
+    assert.ok(
+        css.includes('prefers-reduced-motion: no-preference') && css.includes('transition: opacity'),
+        'opacity transition must be wrapped in prefers-reduced-motion: no-preference'
+    );
+});
+
 test('property-card__tabs is flow-level with margin-bottom', () => {
     const block = extractBlock('.property-card__tabs');
     assert.ok(!block.includes('position: absolute'), 'tabs must not be position absolute');
@@ -31,7 +38,7 @@ test('property-card__tabs is flow-level with margin-bottom', () => {
 test('property-card__tab has min-height for mobile tap target', () => {
     const block = extractBlock('.property-card__tab');
     assert.ok(block.includes('min-height'), 'must have min-height');
-    assert.ok(block.includes('36px'), 'min-height must be 36px');
+    assert.ok(block.includes('min-height: 36px'), 'min-height must be 36px');
 });
 
 test('property-card__tab inactive state has transparent bg with border', () => {
